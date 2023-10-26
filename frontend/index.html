@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Slackr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/provided.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+  <script type="module" src="src/helpers.js"></script>
+  <style>
+    
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id="error-popup" class="error-popup hide">
+    <span id="error-message"></span>
+    <button id="close-error-popup">x</button>
+  </div>
+  
+  <!-- create channel -->
+  <div id="channelModal" class="modal">
+    <div class="modal-content">
+      <span class="closeBtn">&times;</span>
+      <input type="text" id="channelInput" placeholder="Enter channel name">
+      <input type="text" id="channelDescription" placeholder="Enter description (optional)">
+      <select id="channelType">
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+      </select>
+      <button id="createChannelBtn">Create</button>
+    </div>
+  </div>
+
+  <!-- pinned message -->
+  <div class="pinnedMessagesModal">
+    <div class="pinnedMessagesContent">
+        <span class="close">&times;</span>
+        <h2>Pinned Messages</h2>
+        <ul id="pinnedMessagesList">
+            <!-- Pinned messages will be populated here -->
+        </ul>
+    </div>
+  </div>
+
+  <!-- invite -->
+  <div id="inviteModal" class="inviteModal" style="display: none;">
+    <div class="inviteContent">
+      <span class="inviteCloseBtn">&times;</span>
+      <h4>Invite Users</h4>
+      <ul id="userList"></ul>
+      <button class="inviteBtn" id="inviteBtn">Invite</button>
+    </div>
+  </div>
+
+
+  <!-- profile  -->
+  <div class="profileModal" style="display: none;">
+    <div class="profile-header">
+        <span class="procloseBtn">×</span>
+    </div>
+    <div class="profile-content">
+        <img class="profile-pic" src="./assert/defaultAvatar.svg" alt="avatar">
+        <h2>Mia</h2>
+        <p>BIO: User has no biography</p>
+        <p>EMAIL: mia@email.com</p>
+    </div>
+  </div>
+
+  <!-- profileTitle -->
+  <div class="profileTitleModal" style="display: none;">
+    <span class="proTiCloseBtn">×</span>
+    <img src="./assert/defaultAvatar.svg" alt="avatar" id="profileAvatar">
+    <br>
+    name : <input type="text" placeholder="name">
+    bio: <input type="text" placeholder="bio">
+    email: <input type="email" placeholder="email">
+    current password: <input type="password" placeholder="Current Password">
+    new password: <input type="password" placeholder="Change Password">
+    new avatar: <input type="file">
+    <button id="newProfileBtn">submit</button>
+  </div>
+
+
+
+
+
+
+  <!-- modal done follow is main -->
+
+  <div id="login" >
+    <div class="loginPage">
+      <form class="loginForm" id="loginForm">
+          <h2>Slackr ™</h2>
+          <label for="email">Email</label><br>
+          <input type="text" id="email" placeholder="Enter your Email...">
+          <br>
+          <label for="password">Password</label><br>
+          <input type="password" id="password" placeholder="Enter your Password...">
+          <br>
+          <button id="btn-login">login</button>
+          <button id="btn-signup">sign up</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="signup" class="hide">
+    <div class="submitPage">
+      <form class="signupForm" id="signupForm">
+        <h2>Slackr ™</h2>
+        <label>Email</label><br>
+        <input type="text" id="signupEmail" placeholder="register your Email...">
+        <br>
+        <label>Name</label><br>
+        <input type="text" id="name" placeholder="register your Name..">
+        <br>
+        <label>Password</label><br>
+        <input type="password" id="passwordSIGN" placeholder="register your Password...">
+        <br>
+        <label>Confirm your password</label><br>
+        <input type="password" id="passwordCHECK" placeholder="Confirm your password">
+        <br>
+        <button id="btn-submit">submit</button>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+  <main id="main" class="hide">
+    <header class="banner">
+      <button id="btn-home">HOME</button>
+      <input type="text" placeholder="search channel">
+      <h1>Slackr</h1>
+      <h3 id="profileTitle">Profile</h3>
+      <button id="btn-logout">LOGOUT</button>
+    </header>
+    <div class="mainPage">
+
+      <!-- nav -->
+      <div class="nav">
+        <div class="searchChannelBox">
+          <!-- <input class="searchChannel" placeholder="search channel"> -->
+          <button class="invite">invite</button>
+          <button class="leave">leave</button>
+        </div>
+        <div class="channelBox">
+
+          <!-- demo channel -->
+          <!-- <div class="channel">
+            <img class="rename minusIcon" src="./assert/minus.svg" alt="minus">
+            <span class="channelName">public channel</span>
+            <img class="rename renameIcon" src="./assert/pen-to-square-solid.svg" alt="rename">
+          </div> -->
+          
+        </div>
+        <div class="createBox">
+          <button>+</button>
+        </div>
+      </div>
+
+        <div class="home">
+          <div class="defaultHome">
+            <div id="dateDiv">
+              今天是 2023 年的第 <span id="dayCount">0</span> 天
+            </div>
+            <div id="yearPercentage">
+                今年已过 <span id="percentage">0.00%</span>
+            </div>
+            <div id="dayPercentage">
+                今天已过 <span id="dayPercentageValue">0.00%</span>
+            </div>
+            <div id="messageDiv">
+                活在当下，珍惜眼下
+            </div>
+          </div>
+        </div>
+    
+    </div>
+
+
+
+
+
+    <footer>
+      <p>&copy; Slackr</p>
+    </footer>
+  </main>
+
+
+  <script type="module" src="src/main.js"></script>
+  <script type="module" src="src/login.js"></script>
+  <script type="module" src="./src/nav.js"></script>
+  <script type="module" src="./src/users.js"></script>
+
+  <script>
+
+  
+  </script>
+
+</body>
+
+</html>
+
+
+
+
+
