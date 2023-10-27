@@ -16,17 +16,19 @@ export function showProfile(userId){
     }
     fetch(url,requestStructure).then(response =>response.json())
     .then(data =>{
+        console.log(data);
+        console.log(data.image);
         const profilePic = document.querySelector('.profile-pic');
-            const profileName = document.querySelector('.profileModal h2');
-            const profileBio = document.querySelector('.profileModal p:nth-child(3)'); 
-            const profileEmail = document.querySelector('.profileModal p:nth-child(4)');
+        const profileName = document.querySelector('.profileModal h2');
+        const profileBio = document.querySelector('.profileModal p:nth-child(3)'); 
+        const profileEmail = document.querySelector('.profileModal p:nth-child(4)');
 
-            profilePic.src = data.image ? data.image : "./assert/defaultAvatar.svg";
-            profileName.textContent = data.name;
+        profilePic.src = data.image ? data.image : "./assert/defaultAvatar.svg";
+        profileName.textContent = data.name;
 
-            data.bio ? profileBio.textContent = `BIO: ${data.bio}` :  profileBio.textContent = "BIO: User has no biography";;
-        
-            profileEmail.textContent = `EMAIL: ${data.email}`;
+        data.bio ? profileBio.textContent = `BIO: ${data.bio}` :  profileBio.textContent = "BIO: User has no biography";;
+    
+        profileEmail.textContent = `EMAIL: ${data.email}`;
     })
     .catch(error =>{
         showErrorPopup(error);

@@ -113,6 +113,7 @@ const logout = () => {
         } else {
             response.json().then((data) => {
                 localStorage.removeItem('token');
+                localStorage.removeItem('userId');
                 changeVisbility('main','login');
                 showErrorPopup(data["error"]);
             });
